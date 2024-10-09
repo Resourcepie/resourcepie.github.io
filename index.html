@@ -1,0 +1,438 @@
+<html><head><base href="https://websim.creation.engine/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LendNaija - Apply for Profitable Loans | Fast & Easy</title>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100%;
+    background: linear-gradient(45deg, #6a11cb 0%, #2575fc 100%);
+    color: white;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+  }
+  .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  .logo svg {
+    margin-right: 10px;
+  }
+  .apply-button, .get-results-button {
+    background-color: #ffd700;
+    color: #000;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .apply-button:hover, .get-results-button:hover {
+    background-color: #ffec8b;
+  }
+  .get-results-button:active {
+    transform: translateY(4px);
+  }
+  h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  .subheading {
+    font-size: 1em;
+    margin-bottom: 30px;
+    text-align: left;
+    opacity: 0.8;
+  }
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0 0 40px 0;
+    text-align: left;
+  }
+  li {
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+  li::before {
+    content: "✅ ";
+  }
+  .slider-container {
+    margin-bottom: 30px;
+  }
+  .slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 15px;
+    border-radius: 5px;
+    background: #d3d3d3;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    margin-top: 10px;
+  }
+  .slider:hover {
+    opacity: 1;
+  }
+  .slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #ffd700;
+    cursor: pointer;
+  }
+  .slider::-moz-range-thumb {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #ffd700;
+    cursor: pointer;
+  }
+  .loan-results {
+    display: none;
+    margin-top: 30px;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+  }
+  .loan-results.show {
+    opacity: 1;
+  }
+  .loan-results-header {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 30px;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  }
+  .loan-option {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+  }
+  .loan-option-logo {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    object-fit: contain;
+  }
+  .loan-option-details {
+    flex-grow: 1;
+  }
+  .loan-option h3 {
+    margin-top: 0;
+  }
+  .loan-option button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .get-results-button {
+    margin-top: 20px;
+  }
+  .faq-section {
+    margin-top: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+  }
+  .faq-header {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .faq-item {
+    margin-bottom: 20px;
+  }
+  .faq-question {
+    font-weight: bold;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  .faq-answer {
+    display: none;
+    padding-left: 20px;
+  }
+  .faq-question::before {
+    content: '▶ ';
+    font-size: 0.8em;
+  }
+  .faq-question.active::before {
+    content: '▼ ';
+  }
+  .cbn-regulation {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    font-size: 0.9em;
+    opacity: 0.8;
+  }
+  .cbn-logo {
+    margin-right: 10px;
+  }
+  .about-us {
+    margin-top: 50px;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    color: #333;
+  }
+  .about-us h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #2575fc;
+  }
+  .about-us p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+  }
+  .notification-widget {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #ffd700;
+    color: #000;
+    padding: 15px 25px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: none;
+    z-index: 1000;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    opacity: 0;
+    transform: translateY(20px);
+    font-size: 16px;
+    max-width: 350px;
+    display: flex;
+    align-items: center;
+  }
+  .notification-widget.show {
+    display: flex;
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .naira-image {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    object-fit: cover;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="notification-widget" id="notificationWidget">
+      <img src="https://i.pinimg.com/originals/77/99/58/779958520d590f8f42b0a63c7dffe3c5.png" alt="Naira note bundle" class="naira-image">
+      <span id="notificationText"></span>
+    </div>
+    <div class="header">
+      <a href="https://lendnaija.com" class="logo">
+        <svg width="40" height="40" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="25" cy="25" r="23" stroke="white" stroke-width="4"/>
+          <path d="M25 10V40M15 20H35M15 30H35" stroke="white" stroke-width="4"/>
+        </svg>
+        LendNaija
+      </a>
+      <a href="https://tracker.ppcmate.com/9rm4P" class="apply-button">Apply Now</a>
+    </div>
+    <h1>Apply for profitable loans on our website</h1>
+    <p class="subheading">24/7 issuance of loans to the card without a certificate of income, high interest and overpayments.</p>
+    <ul>
+      <li>FREE FOR YOU</li>
+      <li>ONLY VERIFIED COMPANIES</li>
+      <li>CURRENT RATING OF MFI</li>
+    </ul>
+
+    <div class="slider-container">
+      <h3>Loan Amount: ₦<span id="loanAmount">50000</span></h3>
+      <input type="range" min="10000" max="1000000" value="50000" class="slider" id="loanAmountSlider">
+    </div>
+
+    <div class="slider-container">
+      <h3>Loan Term: <span id="loanTerm">30</span> days</h3>
+      <input type="range" min="7" max="90" value="30" class="slider" id="loanTermSlider">
+    </div>
+
+    <button class="get-results-button" onclick="showResults()">Get Results</button>
+
+    <div id="loanResults" class="loan-results">
+      <h2 class="loan-results-header">Online loans in Nigeria For You</h2>
+      <!-- Loan options will be dynamically added here -->
+    </div>
+
+    <div class="faq-section">
+      <h2 class="faq-header">Frequently Asked Questions</h2>
+      <div class="faq-item">
+        <div class="faq-question">How do I apply for a loan?</div>
+        <div class="faq-answer">To apply for a loan, simply use the sliders above to select your desired loan amount and term, then click "Get Results". You'll be presented with loan options from our verified partners. Click "Apply Now" on the option that suits you best to proceed with the application on the lender's website.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">What documents do I need to apply?</div>
+        <div class="faq-answer">Requirements may vary by lender, but generally you'll need a valid government-issued ID, proof of income, and bank account details. Some lenders may require additional documentation.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">How long does it take to get approved?</div>
+        <div class="faq-answer">Approval times vary by lender. Some offer instant decisions, while others may take a few hours or up to a business day. Check the "Response Time" for each loan option to get an idea of the approval speed.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Is my information secure?</div>
+        <div class="faq-answer">Yes, we take your privacy seriously. All information shared through our platform is encrypted and securely transmitted. We only work with verified, reputable lenders who adhere to strict data protection standards.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">What if I can't repay my loan on time?</div>
+        <div class="faq-answer">If you anticipate difficulty repaying your loan, contact your lender immediately. Many lenders offer extensions or repayment plans. Be aware that late payments may result in additional fees and negatively impact your credit score.</div>
+      </div>
+    </div>
+
+    <div class="about-us">
+      <h2>About Us</h2>
+      <p>LendNaija is your trusted platform for accessing quick and easy loans in Nigeria. We partner with verified lenders to bring you a range of loan options tailored to your needs. Our mission is to make the loan application process simple, transparent, and hassle-free for every Nigerian.</p>
+      <p>With LendNaija, you can compare loan offers from multiple lenders, all in one place. We believe in empowering our users with information and choice, helping you make the best financial decisions for your unique situation.</p>
+      <p>Whether you need a short-term loan to cover unexpected expenses or a longer-term loan for a major purchase, LendNaija is here to help. Our platform is available 24/7, allowing you to apply for loans at your convenience, from the comfort of your home.</p>
+      <p>Choose LendNaija for a smarter way to borrow. Your financial journey starts here!</p>
+    </div>
+
+    <div class="cbn-regulation">
+      <svg class="cbn-logo" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="40" height="40" rx="20" fill="#006400"/>
+        <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-size="12" font-weight="bold">CBN</text>
+      </svg>
+      <span>Regulated by CBN</span>
+    </div>
+  </div>
+
+  <script>
+    const loanAmountSlider = document.getElementById("loanAmountSlider");
+    const loanTermSlider = document.getElementById("loanTermSlider");
+    const loanAmountDisplay = document.getElementById("loanAmount");
+    const loanTermDisplay = document.getElementById("loanTerm");
+    const loanResults = document.getElementById("loanResults");
+
+    loanAmountSlider.oninput = function() {
+      loanAmountDisplay.innerHTML = this.value;
+    }
+
+    loanTermSlider.oninput = function() {
+      loanTermDisplay.innerHTML = this.value;
+    }
+
+    function showResults() {
+      const amount = loanAmountSlider.value;
+      const term = loanTermSlider.value;
+
+      // Mock loan options (in a real scenario, this would come from an API)
+      const loanOptions = [
+        { name: "Kobogo Loan", logo: "https://i.postimg.cc/c1Q26tkT/Screenshot-2024-10-09-054600.png", term: term, amount: amount, interest: "2.3%", response: "Instant", applyLink: "https://tracker.ppcmate.com/9rm4P" },
+       
+      ];
+
+      loanResults.innerHTML = '<h2 class="loan-results-header">Online loans in Nigeria For You</h2>';
+      loanOptions.forEach(option => {
+        const loanOptionElement = document.createElement("div");
+        loanOptionElement.className = "loan-option";
+        loanOptionElement.innerHTML = `
+          <img src="${option.logo}" alt="${option.name} logo" class="loan-option-logo">
+          <div class="loan-option-details">
+            <h3>${option.name}</h3>
+            <p>Loan Term: ${option.term} days</p>
+            <p>Loan Amount: ₦${option.amount}</p>
+            <p>Interest Rate: ${option.interest}</p>
+            <p>Response Time: ${option.response}</p>
+            <a href="${option.applyLink}" target="_blank" class="apply-button">Apply Now</a>
+          </div>
+        `;
+        loanResults.appendChild(loanOptionElement);
+      });
+
+      loanResults.style.display = "block";
+
+      // Add a slight delay before adding the 'show' class to trigger the transition
+      setTimeout(() => {
+        loanResults.classList.add('show');
+      }, 50);
+
+      // Scroll to the results
+      loanResults.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // FAQ toggle functionality
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        const isOpen = answer.style.display === 'block';
+        
+        // Close all other open questions
+        document.querySelectorAll('.faq-answer').forEach(a => a.style.display = 'none');
+        document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('active'));
+        
+        // Toggle the clicked question
+        answer.style.display = isOpen ? 'none' : 'block';
+        question.classList.toggle('active', !isOpen);
+      });
+    });
+
+    function showNotification() {
+      const names = ['John', 'Mary', 'David', 'Sarah', 'Michael', 'Emma'];
+      const cities = ['Lagos', 'Abuja', 'Kano', 'Ibadan', 'Port Harcourt', 'Benin City'];
+      const amounts = [50000, 100000, 75000, 200000, 150000];
+
+      const randomName = names[Math.floor(Math.random() * names.length)];
+      const randomCity = cities[Math.floor(Math.random() * cities.length)];
+      const randomAmount = amounts[Math.floor(Math.random() * amounts.length)];
+
+      const notificationText = `${randomName} from ${randomCity} has just been approved for a loan of ${randomAmount.toLocaleString()} Naira`;
+      
+      const notificationWidget = document.getElementById('notificationWidget');
+      const notificationTextElement = document.getElementById('notificationText');
+      
+      notificationTextElement.textContent = notificationText;
+      notificationWidget.classList.add('show');
+
+      setTimeout(() => {
+        notificationWidget.classList.remove('show');
+      }, 5000);
+    }
+
+    // Show a notification every 10 seconds
+    setInterval(showNotification, 10000);
+
+    // Show the first notification immediately
+    showNotification();
+  </script>
+</body>
+</html>
